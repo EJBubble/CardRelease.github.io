@@ -90,6 +90,33 @@ body {
 .lock-icon { width: 74px; height: 74px; margin: 0 auto 18px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: linear-gradient(145deg, #efabb7, #cd7a90); font-size: 28px; box-shadow: 0 12px 28px rgba(190,109,134,.24); }
 .lock-panel p { margin: 0 0 7px; font-family: "Noto Serif TC", serif; font-size: 20px; font-weight: 800; }
 .lock-panel span { color: #9a7a8c; font-size: 13px; }
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(62px, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+.countdown div {
+  min-width: 0;
+  padding: 12px 6px 10px;
+  border: 1px solid rgba(202,113,135,.12);
+  border-radius: 16px;
+  background: rgba(255,255,255,.72);
+}
+.countdown strong {
+  display: block;
+  color: var(--pink-dark);
+  font-family: "Nunito", "Noto Serif TC", sans-serif;
+  font-size: clamp(24px, 6vw, 34px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.countdown small {
+  display: block;
+  margin-top: 7px;
+  color: #9a7a8c;
+  font-size: 12px;
+}
 .progress.locked, .wish-grid.locked, .wish-message.locked { display: none; }
 
 .wish-grid {
@@ -313,6 +340,9 @@ body {
 @media (max-width: 680px) {
   .page-shell { padding: 12px; }
   .gift-stage { min-height: 620px; padding: 38px 18px 24px; border-radius: 26px; }
+  .lock-panel { padding: 32px 14px; }
+  .countdown { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .countdown div { border-radius: 12px; }
   .wish-grid { grid-template-columns: repeat(5, 1fr); gap: 7px; }
   .wish-button { font-size: 9px; }
   .wish-button span { font-size: 18px; }

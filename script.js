@@ -17,12 +17,30 @@ const confirmGift = document.getElementById('confirmGift');
 const backToCard = document.getElementById('backToCard');
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
+const countdownDays = document.getElementById('countdownDays');
+const countdownHours = document.getElementById('countdownHours');
+const countdownMinutes = document.getElementById('countdownMinutes');
+const countdownSeconds = document.getElementById('countdownSeconds');
 
 let completed = 0;
 const giftStorageKey = 'card-release-gift-selection';
 
 const revealParts = [2026, 11, 19];
 let isUnlocked = false;
+
+function updateCountdown(unlockAt, now) {
+  const remaining = Math.max(0, unlockAt.getTime() - now.getTime());
+  const totalSeconds = Math.floor(remaining / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  countdownDays.textContent = String(days);
+  countdownHours.textContent = String(hours).padStart(2, '0');
+  countdownMinutes.textContent = String(minutes).padStart(2, '0');
+  countdownSeconds.textContent = String(seconds).padStart(2, '0');
+}
 
 function restoreGiftSelection() {
   let saved;
@@ -75,6 +93,7 @@ function applyLockState() {
   if (!unlocked) {
     isUnlocked = false;
     document.title = '還在製作中';
+    updateCountdown(unlockAt, now);
     lockPanel.hidden = false;
     progressArea.classList.add('locked');
     wishGrid.classList.add('locked');
@@ -95,7 +114,7 @@ function applyLockState() {
 }
 
 applyLockState();
-setInterval(applyLockState, 30000);
+setInterval(applyLockState, 1000);
 window.addEventListener('hashchange', applyLockState);
 
 function updateProgress() {

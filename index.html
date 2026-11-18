@@ -37,7 +37,13 @@
       <div class="lock-panel" id="lockPanel" aria-live="polite">
         <div class="lock-icon" aria-hidden="true">✦</div>
         <p>網頁正在設定中</p>
-        <span>請到指定時間再回來看看</span>
+        <span>驚喜將在倒數結束後開啟</span>
+        <div class="countdown" id="countdown" aria-label="開啟倒數">
+          <div><strong id="countdownDays">0</strong><small>天</small></div>
+          <div><strong id="countdownHours">00</strong><small>時</small></div>
+          <div><strong id="countdownMinutes">00</strong><small>分</small></div>
+          <div><strong id="countdownSeconds">00</strong><small>秒</small></div>
+        </div>
       </div>
 
       <div class="progress locked" id="progressArea" aria-label="完成進度">
