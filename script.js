@@ -19,9 +19,41 @@ const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 
 let completed = 0;
+const giftStorageKey = 'card-release-gift-selection';
 
 const revealParts = [2026, 11, 19];
 let isUnlocked = false;
+
+function restoreGiftSelection() {
+  let saved;
+  try {
+    saved = JSON.parse(localStorage.getItem(giftStorageKey));
+  } catch {
+    saved = null;
+  }
+  if (!saved?.gift) return;
+
+  const selected = giftOptions.find((option) => option.dataset.gift === saved.gift);
+  if (!selected) return;
+
+  giftOptions.forEach((item) => {
+    item.classList.remove('selected');
+    item.setAttribute('aria-checked', 'false');
+  });
+  selected.classList.add('selected');
+  selected.setAttribute('aria-checked', 'true');
+  giftSelection.textContent = saved.confirmed
+    ? `已確認並通知 EJ：${saved.gift}`
+    : `已選擇：${saved.gift}`;
+  confirmGift.disabled = saved.confirmed;
+  confirmGift.textContent = saved.confirmed ? '已確認' : '確認選擇';
+  giftOptions.forEach((option) => {
+    option.disabled = saved.confirmed;
+  });
+  finalCard.classList.remove('show');
+  giftChooser.classList.add('show');
+  giftChooser.setAttribute('aria-hidden', 'false');
+}
 
 function hasPreviewFlag() {
   const params = new URLSearchParams(window.location.search);
@@ -98,6 +130,7 @@ closeCard.addEventListener('click', () => {
 
 giftOptions.forEach((option) => {
   option.addEventListener('click', () => {
+    if (confirmGift.textContent === '已確認') return;
     giftOptions.forEach((item) => {
       item.classList.remove('selected');
       item.setAttribute('aria-checked', 'false');
@@ -106,6 +139,9 @@ giftOptions.forEach((option) => {
     option.setAttribute('aria-checked', 'true');
     giftSelection.textContent = `已選擇：${option.dataset.gift}`;
     confirmGift.disabled = false;
+    try {
+      localStorage.setItem(giftStorageKey, JSON.stringify({ gift: option.dataset.gift, confirmed: false }));
+    } catch {}
   });
 });
 
@@ -113,9 +149,16 @@ confirmGift.addEventListener('click', () => {
   const selected = document.querySelector('.gift-option.selected');
   if (!selected) return;
 
-  giftSelection.textContent = `選擇完成：${selected.dataset.gift}`;
+  giftSelection.textContent = `已確認並通知 EJ：${selected.dataset.gift}`;
   confirmGift.textContent = '已確認';
   confirmGift.disabled = true;
+  try {
+    localStorage.setItem(giftStorageKey, JSON.stringify({ gift: selected.dataset.gift, confirmed: true }));
+  } catch {}
+  giftOptions.forEach((option) => {
+    option.disabled = true;
+  });
+  setTimeout(() => window.location.reload(), 1200);
 });
 
 backToCard.addEventListener('click', () => {
@@ -127,10 +170,16 @@ backToCard.addEventListener('click', () => {
   giftOptions.forEach((item) => {
     item.classList.remove('selected');
     item.setAttribute('aria-checked', 'false');
+    item.disabled = false;
   });
   giftSelection.textContent = '請選擇一個禮物方式';
   wishMessage.textContent = '再點一次也會留下同樣的祝福 ✦';
+  try {
+    localStorage.removeItem(giftStorageKey);
+  } catch {}
 });
+
+restoreGiftSelection();
 
 function launchConfetti() {
   const dpr = window.devicePixelRatio || 1;

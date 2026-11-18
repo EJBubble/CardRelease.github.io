@@ -291,10 +291,16 @@ body {
   font: 800 13px "Nunito", sans-serif;
   cursor: pointer;
 }
+.gift-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 .confirm-gift { min-width: 140px; color: #fff; background: var(--pink-dark); }
 .confirm-gift:disabled { cursor: not-allowed; opacity: .45; }
 .back-to-card {
-  margin-left: 6px;
   color: #806778;
   background: #eee3e4;
 }
@@ -313,4 +319,33 @@ body {
   .intro h1 { font-size: 44px; }
   .progress { margin-bottom: 20px; }
   .final-card { inset: 38px 50%; min-height: 500px; }
+  .gift-chooser {
+    inset: 18px 50%;
+    width: min(430px, calc(100% - 24px));
+    max-height: calc(100vh - 36px);
+    min-height: 0;
+    padding: 24px 16px 18px;
+  }
+  .gift-chooser h2 {
+    margin-bottom: 16px;
+    font-size: 32px;
+  }
+  .gift-options { gap: 8px; }
+  .gift-option {
+    min-height: 92px;
+    padding: 12px 12px 12px 68px;
+  }
+  .gift-selection {
+    margin: 12px 0 10px;
+  }
+  .gift-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .confirm-gift,
+  .back-to-card {
+    width: 100%;
+    min-width: 0;
+  }
 }
