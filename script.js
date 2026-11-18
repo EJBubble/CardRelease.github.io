@@ -51,8 +51,13 @@ function restoreGiftSelection() {
     option.disabled = saved.confirmed;
   });
   finalCard.classList.remove('show');
-  giftChooser.classList.add('show');
-  giftChooser.setAttribute('aria-hidden', 'false');
+  if (saved.confirmed) {
+    giftChooser.classList.remove('show');
+    giftChooser.setAttribute('aria-hidden', 'true');
+  } else {
+    giftChooser.classList.add('show');
+    giftChooser.setAttribute('aria-hidden', 'false');
+  }
 }
 
 function hasPreviewFlag() {
@@ -158,7 +163,11 @@ confirmGift.addEventListener('click', () => {
   giftOptions.forEach((option) => {
     option.disabled = true;
   });
-  setTimeout(() => window.location.reload(), 1200);
+  birthdayVideo.pause();
+  birthdayVideo.currentTime = 0;
+  finalCard.classList.remove('show');
+  giftChooser.classList.remove('show');
+  giftChooser.setAttribute('aria-hidden', 'true');
 });
 
 backToCard.addEventListener('click', () => {
