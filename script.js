@@ -74,7 +74,7 @@ function applyLockState() {
 
   if (!unlocked) {
     isUnlocked = false;
-    document.title = '未正式發布網站';
+    document.title = '還在製作中';
     lockPanel.hidden = false;
     progressArea.classList.add('locked');
     wishGrid.classList.add('locked');
