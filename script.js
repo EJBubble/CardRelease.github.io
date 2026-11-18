@@ -10,6 +10,11 @@ const instruction = document.getElementById('instruction');
 const finalCard = document.getElementById('finalCard');
 const closeCard = document.getElementById('closeCard');
 const birthdayVideo = document.getElementById('birthdayVideo');
+const giftChooser = document.getElementById('giftChooser');
+const giftOptions = [...document.querySelectorAll('.gift-option')];
+const giftSelection = document.getElementById('giftSelection');
+const confirmGift = document.getElementById('confirmGift');
+const backToCard = document.getElementById('backToCard');
 const canvas = document.getElementById('confetti');
 const ctx = canvas.getContext('2d');
 
@@ -87,6 +92,43 @@ closeCard.addEventListener('click', () => {
   birthdayVideo.pause();
   birthdayVideo.currentTime = 0;
   finalCard.classList.remove('show');
+  giftChooser.classList.add('show');
+  giftChooser.setAttribute('aria-hidden', 'false');
+});
+
+giftOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    giftOptions.forEach((item) => {
+      item.classList.remove('selected');
+      item.setAttribute('aria-checked', 'false');
+    });
+    option.classList.add('selected');
+    option.setAttribute('aria-checked', 'true');
+    giftSelection.textContent = `已選擇：${option.dataset.gift}`;
+    confirmGift.disabled = false;
+  });
+});
+
+confirmGift.addEventListener('click', () => {
+  const selected = document.querySelector('.gift-option.selected');
+  if (!selected) return;
+
+  giftSelection.textContent = `選擇完成：${selected.dataset.gift}`;
+  confirmGift.textContent = '已確認';
+  confirmGift.disabled = true;
+});
+
+backToCard.addEventListener('click', () => {
+  giftChooser.classList.remove('show');
+  giftChooser.setAttribute('aria-hidden', 'true');
+  finalCard.classList.add('show');
+  confirmGift.textContent = '確認選擇';
+  confirmGift.disabled = true;
+  giftOptions.forEach((item) => {
+    item.classList.remove('selected');
+    item.setAttribute('aria-checked', 'false');
+  });
+  giftSelection.textContent = '請選擇一個禮物方式';
   wishMessage.textContent = '再點一次也會留下同樣的祝福 ✦';
 });
 

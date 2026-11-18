@@ -54,13 +54,33 @@
         </div>
         <p class="card-small">送給靖雯</p>
         <h2>生日快樂</h2>
-        <p class="card-copy">願妳在接下來的一年健康平安賺大錢<br>任何的苦，我們都在妳身邊支持。</p>
+        <p class="card-copy">願妳在接下來的一年健康平安賺大錢<br>就算遇到任何挫折，也有我們在旁邊陪伴<br>甚麼時候可以抱到我的肝兒子女兒</p>
         <img class="birthday-photo" src="memory.jpg" alt="精選照片">
         <video class="birthday-video" id="birthdayVideo" controls preload="metadata" playsinline>
           <source src="memory.mp4" type="video/mp4">
           您的瀏覽器不支援影片播放。
         </video>
-        <button class="close-card" id="closeCard" type="button">神仙GOGO</button>
+        <button class="close-card" id="closeCard" type="button">禮物選取GOGO</button>
+      </div>
+
+      <div class="gift-chooser" id="giftChooser" role="dialog" aria-modal="true" aria-label="禮物二選一" aria-hidden="true">
+        <p class="chooser-eyebrow">PICK YOUR GIFT</p>
+        <h2>禮物二選一</h2>
+        <div class="gift-options" role="radiogroup" aria-label="選擇禮物方式">
+          <button class="gift-option" type="button" role="radio" aria-checked="false" data-gift="蝦皮網購等贊助">
+            <span class="gift-number">1</span>
+            <strong>蝦皮網購等大力贊助</strong>
+            <small>通知EJ</small>
+          </button>
+          <button class="gift-option" type="button" role="radio" aria-checked="false" data-gift="亦節自選禮物">
+            <span class="gift-number">2</span>
+            <strong>亦節自選禮物</strong>
+            <small>通知EJ</small>
+          </button>
+        </div>
+        <p class="gift-selection" id="giftSelection" aria-live="polite">請選擇一個禮物方式</p>
+        <button class="confirm-gift" id="confirmGift" type="button" disabled>確認選擇</button>
+        <button class="back-to-card" id="backToCard" type="button">回到生日卡片</button>
       </div>
     </section>
   </main>
