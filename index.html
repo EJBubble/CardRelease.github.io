@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>驚喜準備中</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="gift-stage" id="giftStage">
+      <div class="sparkles" aria-hidden="true">
+        <span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span>
+      </div>
+
+      <header class="intro">
+        <p class="eyebrow">A LITTLE SURPRISE</p>
+        <h1 id="mainTitle">晚點再來</h1>
+        <p id="instruction">現在先好好休息</p>
+      </header>
+
+      <div class="lock-panel" id="lockPanel" aria-live="polite">
+        <div class="lock-icon" aria-hidden="true">✦</div>
+        <p>網頁正在設定中</p>
+        <span>請到指定時間再回來看看</span>
+      </div>
+
+      <div class="progress locked" id="progressArea" aria-label="完成進度">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span id="progressText">0 / 10</span>
+      </div>
+
+      <div class="wish-grid locked" id="wishGrid" aria-label="生日按鈕">
+        <button class="wish-button" type="button" data-wish="願你每天都有好心情"><span>1</span>心願一</button>
+        <button class="wish-button" type="button" data-wish="願你所有努力都有回報"><span>2</span>心願二</button>
+        <button class="wish-button" type="button" data-wish="願健康一直陪著你"><span>3</span>心願三</button>
+        <button class="wish-button" type="button" data-wish="願生活處處都有驚喜"><span>4</span>心願四</button>
+        <button class="wish-button" type="button" data-wish="願你永遠保持熱愛"><span>5</span>心願五</button>
+        <button class="wish-button" type="button" data-wish="願美好的朋友都在身邊"><span>6</span>心願六</button>
+        <button class="wish-button" type="button" data-wish="願夢想越走越近"><span>7</span>心願七</button>
+        <button class="wish-button" type="button" data-wish="願平凡日子閃閃發光"><span>8</span>心願八</button>
+        <button class="wish-button" type="button" data-wish="願每個明天都更精彩"><span>9</span>心願九</button>
+        <button class="wish-button" type="button" data-wish="願這一年只多不減"><span>10</span>心願十</button>
+      </div>
+
+      <p class="wish-message locked" id="wishMessage" aria-live="polite"></p>
+
+      <div class="final-card" id="finalCard" role="dialog" aria-modal="true" aria-label="生日卡片">
+        <div class="card-ribbon">HAPPY BIRTHDAY</div>
+        <div class="cake" aria-hidden="true">
+          <div class="candles"><i></i><i></i><i></i></div>
+          <div class="cake-top"></div>
+          <div class="cake-body"></div>
+        </div>
+        <p class="card-small">送給最特別的你</p>
+        <h2>生日快樂</h2>
+        <p class="card-copy">願你被世界溫柔以待，<br>願所有美好，都在新的一歲如約而至。</p>
+        <img class="birthday-photo" src="memory.jpg" alt="精選照片">
+        <video class="birthday-video" id="birthdayVideo" controls preload="metadata" playsinline>
+          <source src="memory.mp4" type="video/mp4">
+          您的瀏覽器不支援影片播放。
+        </video>
+        <button class="close-card" id="closeCard" type="button">再看一次星星</button>
+      </div>
+    </section>
+  </main>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

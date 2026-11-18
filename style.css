@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Nunito:wght@600;800&display=swap');
+
+:root {
+  --ink: #4b3043;
+  --pink: #ef9aaa;
+  --pink-dark: #ca7187;
+  --cream: #fffaf4;
+  --gold: #e8b86d;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--ink);
+  font-family: "Nunito", "Noto Serif TC", sans-serif;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+    linear-gradient(135deg, #f9e1df 0%, #fff8ed 48%, #eaf4ef 100%);
+  background-size: 46px 46px, cover;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 36px 18px;
+}
+
+.gift-stage {
+  position: relative;
+  width: min(860px, 100%);
+  min-height: 650px;
+  border: 1px solid rgba(255,255,255,.75);
+  border-radius: 36px;
+  padding: 48px 56px 40px;
+  background: rgba(255, 250, 244, .82);
+  box-shadow: 0 24px 70px rgba(122, 79, 99, .16);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.intro { text-align: center; }
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--pink-dark);
+  font-size: 12px;
+  letter-spacing: .28em;
+  font-weight: 800;
+}
+.intro h1 {
+  margin: 0;
+  font-family: "Noto Serif TC", serif;
+  font-size: clamp(38px, 7vw, 66px);
+  line-height: 1.15;
+  letter-spacing: .04em;
+}
+.intro p:last-child { margin: 12px 0 20px; color: #806778; }
+
+.sparkles span {
+  position: absolute;
+  color: var(--gold);
+  opacity: .75;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+.sparkles span:nth-child(1) { left: 8%; top: 12%; }
+.sparkles span:nth-child(2) { right: 9%; top: 18%; animation-delay: -.7s; }
+.sparkles span:nth-child(3) { left: 14%; bottom: 13%; animation-delay: -1.2s; }
+.sparkles span:nth-child(4) { right: 16%; bottom: 10%; animation-delay: -.3s; }
+.sparkles span:nth-child(5) { left: 50%; top: 5%; animation-delay: -1.7s; }
+
+.progress { width: min(430px, 86%); margin: 0 auto 26px; display: flex; align-items: center; gap: 12px; }
+.progress-track { height: 7px; flex: 1; border-radius: 99px; background: #eee1df; overflow: hidden; }
+.progress-fill { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--pink), var(--gold)); transition: width .45s ease; }
+#progressText { min-width: 44px; color: #9a7a8c; font-size: 13px; font-weight: 800; }
+
+.lock-panel {
+  width: min(420px, 86%);
+  margin: 62px auto 0;
+  padding: 42px 24px;
+  text-align: center;
+  border: 1px solid rgba(202,113,135,.14);
+  border-radius: 28px;
+  background: rgba(255,255,255,.68);
+  box-shadow: 0 14px 38px rgba(178,125,145,.11);
+}
+.lock-icon { width: 74px; height: 74px; margin: 0 auto 18px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: linear-gradient(145deg, #efabb7, #cd7a90); font-size: 28px; box-shadow: 0 12px 28px rgba(190,109,134,.24); }
+.lock-panel p { margin: 0 0 7px; font-family: "Noto Serif TC", serif; font-size: 20px; font-weight: 800; }
+.lock-panel span { color: #9a7a8c; font-size: 13px; }
+.progress.locked, .wish-grid.locked, .wish-message.locked { display: none; }
+
+.wish-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.wish-button {
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--ink);
+  background: linear-gradient(145deg, #fff, #fdecef);
+  box-shadow: 0 8px 20px rgba(178, 125, 145, .16), inset 0 0 0 1px rgba(202,113,135,.12);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .35s ease;
+}
+.wish-button span { font-size: 24px; line-height: 1; font-weight: 800; color: var(--pink-dark); }
+.wish-button:hover { transform: translateY(-5px) rotate(-2deg); box-shadow: 0 13px 24px rgba(178,125,145,.22); }
+.wish-button:focus-visible { outline: 3px solid rgba(232,184,109,.8); outline-offset: 4px; }
+.wish-button.lit {
+  color: #fff;
+  background: linear-gradient(145deg, #efabb7, #cd7a90);
+  box-shadow: 0 10px 24px rgba(190,109,134,.28), 0 0 20px rgba(239,171,183,.5);
+  animation: pop .38s ease;
+}
+.wish-button.lit span { color: #fff7d6; }
+
+.wish-message {
+  height: 26px;
+  margin: 18px 0 0;
+  text-align: center;
+  color: var(--pink-dark);
+  font-family: "Noto Serif TC", serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.final-card {
+  position: absolute;
+  z-index: 10;
+  inset: 34px 50%;
+  width: min(430px, calc(100% - 40px));
+  min-height: 520px;
+  max-height: calc(100vh - 68px);
+  overflow-y: auto;
+  transform: translateX(-50%) scale(.7) rotate(-3deg);
+  opacity: 0;
+  pointer-events: none;
+  border: 10px solid #fff;
+  border-radius: 20px;
+  padding: 34px 28px 24px;
+  text-align: center;
+  background:
+    linear-gradient(rgba(255,255,255,.65), rgba(255,255,255,.65)),
+    radial-gradient(circle at 20% 20%, #f8cad2 0 3px, transparent 4px),
+    #fffaf3;
+  background-size: auto, 38px 38px, auto;
+  box-shadow: 0 22px 60px rgba(91,52,74,.28);
+  transition: opacity .5s ease, transform .65s cubic-bezier(.2,.8,.2,1);
+}
+.final-card.show { opacity: 1; pointer-events: auto; transform: translateX(-50%) scale(1) rotate(0); }
+.card-ribbon { display: inline-block; margin-bottom: 8px; color: #a45d70; border-bottom: 1px solid #dec0c5; font-size: 11px; letter-spacing: .25em; }
+.card-small { margin: 10px 0 2px; color: #9d7a89; }
+.final-card h2 { margin: 4px 0 8px; font-family: "Noto Serif TC", serif; font-size: 46px; color: #b95f77; }
+.card-copy { margin: 0 0 18px; line-height: 1.9; color: #715663; }
+
+.cake { position: relative; width: 180px; height: 150px; margin: 2px auto 0; }
+.cake-top { position: absolute; width: 150px; height: 42px; left: 15px; bottom: 48px; border-radius: 50%; background: #fff4f2; border: 2px solid #eec0c8; }
+.cake-body { position: absolute; width: 150px; height: 70px; left: 15px; bottom: 0; border-radius: 8px 8px 24px 24px; background: linear-gradient(#edabb6 0 14px, #fff5ed 14px 100%); border: 2px solid #eec0c8; }
+.candles { position: absolute; z-index: 2; left: 67px; bottom: 78px; display: flex; gap: 13px; }
+.candles i { width: 7px; height: 36px; border-radius: 3px; background: repeating-linear-gradient(135deg, #e99baa 0 4px, #fff 4px 8px); position: relative; }
+.candles i::before { content: ""; position: absolute; width: 8px; height: 12px; left: -.5px; top: -13px; border-radius: 80% 20% 55% 45%; background: #f4c96c; transform: rotate(45deg); box-shadow: 0 0 12px #f6ce76; animation: flame 1s ease-in-out infinite alternate; }
+
+.birthday-photo {
+  display: block;
+  width: 100%;
+  max-height: 210px;
+  margin: 0 auto 12px;
+  border: 4px solid #fff;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(91,52,74,.16);
+}
+.birthday-video {
+  display: block;
+  width: 100%;
+  max-height: 170px;
+  margin: 0 auto 12px;
+  border: 4px solid #fff;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #4b3043;
+  box-shadow: 0 8px 20px rgba(91,52,74,.16);
+}
+.close-card { border: 0; border-radius: 999px; padding: 11px 18px; color: #fff; background: var(--pink-dark); font: 800 12px "Nunito", sans-serif; cursor: pointer; }
+#confetti { position: fixed; inset: 0; z-index: 20; width: 100%; height: 100%; pointer-events: none; }
+
+@keyframes pop { 50% { transform: scale(1.12); } }
+@keyframes twinkle { 50% { opacity: 1; transform: scale(1.35) rotate(20deg); } }
+@keyframes flame { to { transform: rotate(45deg) scale(.78); } }
+
+@media (max-width: 680px) {
+  .page-shell { padding: 12px; }
+  .gift-stage { min-height: 620px; padding: 38px 18px 24px; border-radius: 26px; }
+  .wish-grid { grid-template-columns: repeat(5, 1fr); gap: 7px; }
+  .wish-button { font-size: 9px; }
+  .wish-button span { font-size: 18px; }
+  .intro h1 { font-size: 44px; }
+  .progress { margin-bottom: 20px; }
+  .final-card { inset: 38px 50%; min-height: 500px; }
+}
