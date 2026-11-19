@@ -1,2 +1,2 @@
 # CardRelease
-For BBBBB Day
+For 雯子 Birthday 2026
