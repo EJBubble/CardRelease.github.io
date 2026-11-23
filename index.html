@@ -3,111 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>還在製作中</title>
+  <title>生日卡片</title>
   <link rel="canonical" href="https://ejbubble.github.io/CardRelease.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="zh_TW">
   <meta property="og:url" content="https://ejbubble.github.io/CardRelease.github.io/">
-  <meta property="og:site_name" content="還在製作中">
-  <meta property="og:title" content="還在製作中">
-  <meta property="og:image" content="https://ejbubble.github.io/CardRelease.github.io/%E4%B8%8B%E8%BC%89.jpg">
-  <meta property="og:image:secure_url" content="https://ejbubble.github.io/CardRelease.github.io/%E4%B8%8B%E8%BC%89.jpg">
+  <meta property="og:site_name" content="生日卡片">
+  <meta property="og:title" content="生日卡片">
+  <meta property="og:image" content="https://ejbubble.github.io/CardRelease.github.io/assets/images/OG/work-in-progress.jpg">
+  <meta property="og:image:secure_url" content="https://ejbubble.github.io/CardRelease.github.io/assets/images/OG/work-in-progress.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="946">
   <meta property="og:image:height" content="2048">
-  <meta property="og:image:alt" content="還在製作中">
+  <meta property="og:image:alt" content="生日卡片">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="還在製作中">
-  <meta name="twitter:image" content="https://ejbubble.github.io/CardRelease.github.io/%E4%B8%8B%E8%BC%89.jpg">
-  <link rel="stylesheet" href="style.css">
+  <meta name="twitter:title" content="生日卡片">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <main class="page-shell">
-    <section class="gift-stage" id="giftStage">
-      <div class="sparkles" aria-hidden="true">
-        <span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span>
-      </div>
+  <main class="home-shell">
+    <header class="home-header">
+      <p class="eyebrow">BIRTHDAY CARD</p>
+      <h1>生日快樂卡片</h1>
+      <p>請選擇要查看的人</p>
+    </header>
 
-      <header class="intro">
-        <p class="eyebrow">A LITTLE SURPRISE</p>
-        <h1 id="mainTitle">還在製作中</h1>
-        <p id="instruction">現在先好好休息</p>
-      </header>
-
-      <div class="lock-panel" id="lockPanel" aria-live="polite">
-        <div class="lock-icon" aria-hidden="true">✦</div>
-        <p>網頁正在設定中</p>
-        <span>驚喜將在倒數結束後開啟</span>
-        <div class="countdown" id="countdown" aria-label="開啟倒數">
-          <div><strong id="countdownDays">0</strong><small>天</small></div>
-          <div><strong id="countdownHours">00</strong><small>時</small></div>
-          <div><strong id="countdownMinutes">00</strong><small>分</small></div>
-          <div><strong id="countdownSeconds">00</strong><small>秒</small></div>
+    <section class="people-grid" aria-label="選擇生日卡片">
+      <a class="person-card" href="pages/Guan.html">
+        <img src="assets/images/Person/Guan.jpg" alt="雅娟的大頭貼">
+        <div class="person-info">
+          <span class="person-name">雅娟</span>
+          <span class="person-link">Guan <b>查看卡片 →</b></span>
         </div>
-      </div>
+      </a>
 
-      <div class="progress locked" id="progressArea" aria-label="完成進度">
-        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-        <span id="progressText">0 / 10</span>
-      </div>
-
-      <div class="wish-grid locked" id="wishGrid" aria-label="生日按鈕">
-        <button class="wish-button" type="button" data-wish="願你每天都有好心情"><span>1</span>心願一</button>
-        <button class="wish-button" type="button" data-wish="願你所有努力都有回報"><span>2</span>心願二</button>
-        <button class="wish-button" type="button" data-wish="願健康一直陪著你"><span>3</span>心願三</button>
-        <button class="wish-button" type="button" data-wish="願生活處處都有驚喜"><span>4</span>心願四</button>
-        <button class="wish-button" type="button" data-wish="願你永遠保持熱愛"><span>5</span>心願五</button>
-        <button class="wish-button" type="button" data-wish="願美好的朋友都在身邊"><span>6</span>心願六</button>
-        <button class="wish-button" type="button" data-wish="願夢想越走越近"><span>7</span>心願七</button>
-        <button class="wish-button" type="button" data-wish="願平凡日子閃閃發光"><span>8</span>心願八</button>
-        <button class="wish-button" type="button" data-wish="願每個明天都更精彩"><span>9</span>心願九</button>
-        <button class="wish-button" type="button" data-wish="願這一年只多不減"><span>10</span>心願十</button>
-      </div>
-
-      <p class="wish-message locked" id="wishMessage" aria-live="polite"></p>
-
-      <div class="final-card" id="finalCard" role="dialog" aria-modal="true" aria-label="生日卡片">
-        <div class="card-ribbon">HAPPY BIRTHDAY</div>
-        <div class="cake" aria-hidden="true">
-          <div class="candles"><i></i><i></i><i></i></div>
-          <div class="cake-top"></div>
-          <div class="cake-body"></div>
+      <a class="person-card" href="pages/Jay.html">
+        <img src="assets/images/Person/Jay.jpg" alt="亦傑的大頭貼">
+        <div class="person-info">
+          <span class="person-name">亦傑</span>
+          <span class="person-link">Jay <b>查看卡片 →</b></span>
         </div>
-        <p class="card-small">送給靖雯</p>
-        <h2>生日快樂</h2>
-        <p class="card-copy">願妳在接下來的一年健康平安賺大錢<br>就算遇到任何挫折，也有我們在旁邊陪伴<br>甚麼時候可以抱到我的肝兒子女兒</p>
-        <img class="birthday-photo" src="memory.jpg" alt="精選照片">
-        <video class="birthday-video" id="birthdayVideo" controls preload="metadata" playsinline>
-          <source src="memory.mp4" type="video/mp4">
-          您的瀏覽器不支援影片播放。
-        </video>
-        <button class="close-card" id="closeCard" type="button">禮物選取GOGO</button>
-      </div>
+      </a>
 
-      <div class="gift-chooser" id="giftChooser" role="dialog" aria-modal="true" aria-label="禮物二選一" aria-hidden="true">
-        <p class="chooser-eyebrow">PICK YOUR GIFT</p>
-        <h2>禮物二選一</h2>
-        <div class="gift-options" role="radiogroup" aria-label="選擇禮物方式">
-          <button class="gift-option" type="button" role="radio" aria-checked="false" data-gift="蝦皮網購等贊助">
-            <span class="gift-number">1</span>
-            <strong>蝦皮網購等大力贊助</strong>
-            <small>好想要</small>
-          </button>
-          <button class="gift-option" type="button" role="radio" aria-checked="false" data-gift="亦節自選禮物">
-            <span class="gift-number">2</span>
-            <strong>亦節自選禮物</strong>
-            <small>來個驚喜</small>
-          </button>
+      <a class="person-card" href="pages/Ming.html">
+        <img src="assets/images/Person/Ming.jpg" alt="之敏的大頭貼">
+        <div class="person-info">
+          <span class="person-name">之敏</span>
+          <span class="person-link">Ming <b>查看卡片 →</b></span>
         </div>
-        <p class="gift-selection" id="giftSelection" aria-live="polite">請選擇一個禮物方式</p>
-        <div class="gift-actions">
-          <button class="confirm-gift" id="confirmGift" type="button" disabled>口頭告知EJ</button>
-          <button class="back-to-card" id="backToCard" type="button">回到生日卡片</button>
+      </a>
+
+      <a class="person-card" href="pages/Ting.html">
+        <img src="assets/images/Person/Ting.jpg" alt="豪廷的大頭貼">
+        <div class="person-info">
+          <span class="person-name">豪廷</span>
+          <span class="person-link">Ting <b>查看卡片 →</b></span>
         </div>
-      </div>
+      </a>
+
+      <a class="person-card" href="pages/weng.html">
+        <img src="assets/images/Person/Weng.jpg" alt="靖雯的大頭貼">
+        <div class="person-info">
+          <span class="person-name">靖雯</span>
+          <span class="person-link">Weng <b>查看卡片 →</b></span>
+        </div>
+      </a>
     </section>
   </main>
-  <canvas id="confetti" aria-hidden="true"></canvas>
-  <script src="script.js"></script>
 </body>
 </html>

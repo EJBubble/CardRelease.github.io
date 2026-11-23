@@ -22,10 +22,11 @@ const countdownHours = document.getElementById('countdownHours');
 const countdownMinutes = document.getElementById('countdownMinutes');
 const countdownSeconds = document.getElementById('countdownSeconds');
 
+
 let completed = 0;
 const giftStorageKey = 'card-release-gift-selection';
 
-const revealParts = [2026, 11, 19];
+const revealParts = [11, 19];
 let isUnlocked = false;
 
 function updateCountdown(unlockAt, now) {
@@ -87,13 +88,35 @@ function hasPreviewFlag() {
 
 function applyLockState() {
   const now = new Date();
-  const unlockAt = new Date(revealParts[0], revealParts[1] - 1, revealParts[2], 0, 0, 0);
-  const unlocked = hasPreviewFlag() || now >= unlockAt;
+  const birthdayMonth = revealParts[0];
+  const birthdayDay = revealParts[1];
+  const birthdayToday =
+    now.getMonth() + 1 === birthdayMonth &&
+    now.getDate() === birthdayDay;
+  let nextBirthday = new Date(
+    now.getFullYear(),
+    birthdayMonth - 1,
+    birthdayDay,
+    0,
+    0,
+    0
+  );
+  if (nextBirthday <= now) {
+    nextBirthday = new Date(
+      now.getFullYear() + 1,
+      birthdayMonth - 1,
+      birthdayDay,
+      0,
+      0,
+      0
+    );
+  }
+  const unlocked = hasPreviewFlag() || birthdayToday;
 
   if (!unlocked) {
     isUnlocked = false;
     document.title = '還在製作中';
-    updateCountdown(unlockAt, now);
+    updateCountdown(nextBirthday, now);
     lockPanel.hidden = false;
     progressArea.classList.add('locked');
     wishGrid.classList.add('locked');
