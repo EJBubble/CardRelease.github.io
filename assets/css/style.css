@@ -337,31 +337,74 @@ body {
 @keyframes twinkle { 50% { opacity: 1; transform: scale(1.35) rotate(20deg); } }
 @keyframes flame { to { transform: rotate(45deg) scale(.78); } }
 
+.home-page {
+  --campaign-ink: #24231f;
+  --campaign-paper: #f2efe7;
+  --campaign-line: #b9b4a8;
+  --campaign-red: #a65c48;
+  color: var(--campaign-ink);
+  background: var(--campaign-paper);
+}
+
 .home-shell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 56px));
   min-height: 100vh;
   margin: 0 auto;
-  padding: 64px 0;
+  padding: 46px 0 72px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.home-header {
-  text-align: center;
+.campaign-header {
+  position: relative;
+  min-height: 210px;
   margin-bottom: 34px;
+  border-top: 1px solid var(--campaign-ink);
+  border-bottom: 1px solid var(--campaign-line);
+  display: grid;
+  grid-template-columns: 120px 1fr 220px;
+  align-items: end;
+  padding: 22px 0 24px;
 }
 
-.home-header h1 {
-  margin: 8px 0;
+.campaign-mark {
+  align-self: start;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: .18em;
+  font-weight: 800;
+}
+
+.campaign-kicker {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  color: #77746d;
+  font-size: 11px;
+  letter-spacing: .16em;
+}
+
+.campaign-header h1 {
+  grid-column: 2;
+  margin: 0;
+  font-family: "Noto Serif TC", "Yu Mincho", serif;
+  font-size: clamp(72px, 10vw, 132px);
+  line-height: .82;
+  letter-spacing: .04em;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.campaign-lead {
+  margin: 0;
+  padding-left: 20px;
+  border-left: 1px solid var(--campaign-line);
   font-family: "Noto Serif TC", serif;
-  font-size: clamp(38px, 7vw, 64px);
-  line-height: 1.1;
-}
-
-.home-header > p:last-child {
-  margin: 10px 0 0;
-  color: #806778;
+  font-size: 13px;
+  line-height: 2;
+  letter-spacing: .08em;
 }
 
 .home-back {
@@ -418,66 +461,85 @@ body {
 
 .people-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   gap: 18px;
   width: 100%;
+  align-items: start;
 }
 
 .person-card {
+  position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,.85);
-  border-radius: 24px;
-  color: var(--ink);
-  background: rgba(255,250,244,.88);
-  box-shadow: 0 16px 38px rgba(122,79,99,.12);
+  color: var(--campaign-ink);
+  background: transparent;
   text-decoration: none;
-  transition: transform .24s ease, box-shadow .24s ease;
+  transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
 }
+
+.person-card--01 { grid-column: 3 / span 4; }
+.person-card--02 { grid-column: 7 / span 4; }
+.person-card--03 { grid-column: 1 / span 4; }
+.person-card--04 { grid-column: 5 / span 4; }
+.person-card--05 { grid-column: 9 / span 4; }
 
 .person-card:hover,
 .person-card:focus-visible {
   transform: translateY(-8px);
-  box-shadow: 0 22px 44px rgba(122,79,99,.2);
 }
 
 .person-card:focus-visible {
-  outline: 3px solid rgba(232,184,109,.9);
-  outline-offset: 5px;
+  outline: 2px solid var(--campaign-red);
+  outline-offset: 7px;
 }
 
 .person-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  background: #f5e9e6;
+  filter: saturate(.72) contrast(.94);
+  background: #ddd8cd;
 }
 
 .person-info {
-  min-height: 112px;
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: center;
+  min-height: 74px;
+  padding: 10px 0 0;
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: start;
+  border-bottom: 1px solid var(--campaign-line);
 }
 
-.person-name {
-  font-family: "Noto Serif TC", serif;
-  font-size: 24px;
+.person-number {
+  color: var(--campaign-red);
+  font-size: 11px;
+  letter-spacing: .12em;
   font-weight: 800;
 }
 
+.person-name {
+  font-family: "Noto Serif TC", "Yu Mincho", serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
 .person-link {
-  color: #9a7a8c;
-  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #77746d;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .person-link b {
-  display: block;
-  margin-top: 7px;
-  color: var(--pink-dark);
-  font-size: 13px;
+  margin-top: 5px;
+  color: var(--campaign-ink);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 @media (max-width: 680px) {
@@ -525,35 +587,89 @@ body {
 
 @media (max-width: 900px) {
   .people-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
   }
+
+  .campaign-header {
+    grid-template-columns: 80px 1fr 180px;
+    min-height: 180px;
+  }
+
+  .campaign-header h1 {
+    font-size: clamp(58px, 12vw, 92px);
+  }
+
+  .person-card--01 { grid-column: 2 / span 2; }
+  .person-card--02 { grid-column: 4 / span 2; }
+  .person-card--03 { grid-column: 1 / span 2; }
+  .person-card--04 { grid-column: 3 / span 2; }
+  .person-card--05 { grid-column: 5 / span 2; }
 }
 
 @media (max-width: 680px) {
   .home-shell {
-    width: min(520px, calc(100% - 24px));
-    padding: 36px 0;
+    width: min(520px, calc(100% - 28px));
+    padding: 24px 0 48px;
   }
 
-  .home-header {
-    margin-bottom: 22px;
+  .campaign-header {
+    min-height: 150px;
+    grid-template-columns: 58px 1fr;
+    align-items: end;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+  }
+
+  .campaign-mark {
+    grid-column: 1;
+  }
+
+  .campaign-kicker {
+    top: 18px;
+    font-size: 9px;
+  }
+
+  .campaign-header h1 {
+    grid-column: 2;
+    font-size: clamp(46px, 16vw, 72px);
+  }
+
+  .campaign-lead {
+    display: none;
   }
 
   .people-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 22px 10px;
   }
 
   .person-card {
-    border-radius: 18px;
+    grid-column: auto !important;
+    margin-top: 0 !important;
+  }
+
+  .person-card--05 {
+    grid-column: 1 / -1 !important;
+    width: calc(50% - 5px);
+    justify-self: center;
   }
 
   .person-info {
-    min-height: 94px;
-    padding: 13px 8px;
+    min-height: 68px;
+    grid-template-columns: 34px 1fr;
   }
 
   .person-name {
-    font-size: 20px;
+    font-size: 17px;
+  }
+
+  .person-link {
+    grid-column: 2;
+    align-items: flex-start;
+  }
+
+  .person-link span {
+    display: none;
   }
 }
