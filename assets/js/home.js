@@ -23,6 +23,11 @@ if (peopleGrid && people.length) {
 
   people.forEach((person) => peopleGrid.appendChild(person));
   people[0].classList.add('is-nearest');
+
+  people.forEach((person, index) => {
+    const number = person.querySelector('.person-number');
+    if (number) number.textContent = String(index + 1).padStart(2, '0');
+  });
 }
 
 const revealItems = document.querySelectorAll('.person-card');
