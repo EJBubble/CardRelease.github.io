@@ -6,6 +6,11 @@
   --pink-dark: #ca7187;
   --cream: #fffaf4;
   --gold: #e8b86d;
+  --paper-base: #fbfaf7;
+  --watercolor-blue: rgba(156, 184, 204, 0.28);
+  --watercolor-green: rgba(168, 194, 166, 0.26);
+  --watercolor-apricot: rgba(232, 193, 160, 0.30);
+  --ink-line: rgba(92, 88, 82, 0.22);
 }
 
 * { box-sizing: border-box; }
@@ -342,8 +347,67 @@ body {
   --campaign-paper: #f2efe7;
   --campaign-line: #b9b4a8;
   --campaign-red: #a65c48;
+  --engawa-base: #f5efe6;
+  --wood-tint: rgba(214, 193, 165, 0.25);
+  --sunbeam-warm: rgba(255, 248, 232, 0.78);
+  --shoji-shadow: rgba(145, 128, 108, 0.08);
+  --leaf-shadow: rgba(122, 134, 114, 0.09);
   color: var(--campaign-ink);
-  background: var(--campaign-paper);
+  background-color: var(--engawa-base);
+  background-image:
+    radial-gradient(ellipse at 95% 15%, var(--sunbeam-warm) 0%, rgba(255, 248, 232, 0.2) 45%, transparent 75%),
+    linear-gradient(180deg, transparent 65%, var(--wood-tint) 100%),
+    linear-gradient(105deg, rgba(226, 216, 202, 0.35) 0%, transparent 45%, rgba(255, 251, 242, 0.5) 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.home-page::before {
+  content: "";
+  position: fixed;
+  top: -10%;
+  right: -5%;
+  width: 48vw;
+  height: 120vh;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      -24deg,
+      transparent 0px,
+      transparent 68px,
+      var(--shoji-shadow) 68px,
+      var(--shoji-shadow) 76px
+    ),
+    repeating-linear-gradient(
+      66deg,
+      transparent 0px,
+      transparent 110px,
+      var(--shoji-shadow) 110px,
+      var(--shoji-shadow) 116px
+    ),
+    radial-gradient(circle at 75% 30%, var(--leaf-shadow) 0%, transparent 55%);
+  filter: blur(7px);
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.85) 15%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0.85) 15%, transparent 90%);
+}
+
+.home-page::after {
+  content: "";
+  position: fixed;
+  inset: 20px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='linen'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23linen)'/%3E%3C/svg%3E");
+}
+
+.home-page main,
+.home-page header,
+.home-page section {
+  position: relative;
+  z-index: 1;
 }
 
 .home-shell {
@@ -461,7 +525,7 @@ body {
 
 .people-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
   width: 100%;
   align-items: start;
@@ -476,11 +540,19 @@ body {
   transition: opacity .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
 }
 
-.person-card--01 { grid-column: 3 / span 4; }
-.person-card--02 { grid-column: 7 / span 4; }
-.person-card--03 { grid-column: 1 / span 4; }
-.person-card--04 { grid-column: 5 / span 4; }
-.person-card--05 { grid-column: 9 / span 4; }
+.person-card--01,
+.person-card--02,
+.person-card--03,
+.person-card--04,
+.person-card--05 {
+  grid-column: auto;
+}
+
+.person-card.is-nearest {
+  grid-column: 1 / -1;
+  width: calc((100% - 54px) / 4);
+  justify-self: center;
+}
 
 .person-card:hover,
 .person-card:focus-visible {
@@ -587,7 +659,7 @@ body {
 
 @media (max-width: 900px) {
   .people-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
 
@@ -600,11 +672,10 @@ body {
     font-size: clamp(58px, 12vw, 92px);
   }
 
-  .person-card--01 { grid-column: 2 / span 2; }
-  .person-card--02 { grid-column: 4 / span 2; }
-  .person-card--03 { grid-column: 1 / span 2; }
-  .person-card--04 { grid-column: 3 / span 2; }
-  .person-card--05 { grid-column: 5 / span 2; }
+  .person-card.is-nearest {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
 }
 
 @media (max-width: 680px) {
@@ -649,10 +720,8 @@ body {
     margin-top: 0 !important;
   }
 
-  .person-card--05 {
+  .person-card.is-nearest {
     grid-column: 1 / -1 !important;
-    width: calc(50% - 5px);
-    justify-self: center;
   }
 
   .person-info {
