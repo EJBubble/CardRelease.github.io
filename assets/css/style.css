@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;800&family=Nunito:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+TC:wght@600;800&family=Nunito:wght@600;800&display=swap');
 
 :root {
   --ink: #4b3043;
@@ -740,5 +740,432 @@ body {
 
   .person-link span {
     display: none;
+  }
+}
+
+/* Editorial redesign */
+:root {
+  --ink: #2c2c2c;
+  --warm-gray: #7a756e;
+  --paper: #faf8f5;
+  --line: #e5e0d8;
+  --accent: #8e735f;
+}
+
+body,
+.home-page {
+  color: var(--ink);
+  background: var(--paper) !important;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+}
+
+body::before,
+body::after,
+.home-page::before,
+.home-page::after {
+  display: none !important;
+}
+
+.home-shell {
+  width: min(1180px, calc(100% - 96px));
+  max-width: none;
+  min-height: 100vh;
+  padding: 48px 0 120px;
+  justify-content: flex-start;
+}
+
+.campaign-header {
+  min-height: 270px;
+  margin: 0 0 74px;
+  grid-template-columns: 150px 1fr 230px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 30px 0 38px;
+}
+
+.campaign-mark,
+.campaign-kicker,
+.person-number,
+.person-link,
+.eyebrow,
+.card-ribbon,
+.chooser-eyebrow,
+.gift-option small,
+.progressText {
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  color: var(--warm-gray);
+  letter-spacing: .18em;
+}
+
+.campaign-mark {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.campaign-header h1,
+.intro h1,
+.final-card h2,
+.gift-chooser h2,
+.person-name,
+.gift-option strong,
+.lock-panel p,
+.person-lock p {
+  font-family: "Cormorant Garamond", "Noto Serif TC", serif;
+  color: var(--ink);
+}
+
+.campaign-header h1 {
+  font-size: clamp(86px, 11vw, 150px);
+  font-weight: 500;
+  font-style: italic;
+  line-height: .76;
+  letter-spacing: -.03em;
+  align-self: center;
+}
+
+.campaign-kicker {
+  top: 32px;
+  font-size: 9px;
+}
+
+.campaign-lead {
+  border-left: 1px solid var(--line);
+  color: var(--warm-gray);
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 26px;
+  row-gap: 96px;
+  align-items: start;
+  width: 100%;
+}
+
+.person-card,
+.person-card--01,
+.person-card--02,
+.person-card--03,
+.person-card--04,
+.person-card--05 {
+  grid-column: auto;
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s cubic-bezier(.25,1,.5,1),
+    transform 1s cubic-bezier(.25,1,.5,1);
+}
+
+.person-card.reveal-ready {
+  opacity: 1;
+  transform: translateY(var(--parallax-offset, 0));
+}
+.person-card:nth-child(1) { grid-column: 1 / span 4; margin-top: 48px; }
+.person-card:nth-child(2) { grid-column: 6 / span 3; }
+.person-card:nth-child(3) { grid-column: 10 / span 3; margin-top: 112px; }
+.person-card:nth-child(4) { grid-column: 2 / span 3; margin-top: 18px; }
+.person-card:nth-child(5) { grid-column: 7 / span 5; margin-top: 64px; }
+
+.person-card.is-nearest {
+  grid-column: 1 / span 4;
+  width: 100%;
+  margin-top: 48px;
+}
+
+.person-card:hover,
+.person-card:focus-visible {
+  transform: translateY(-4px);
+}
+
+.person-card img {
+  border-radius: 2px;
+  aspect-ratio: 3 / 4;
+  filter: saturate(.78) contrast(.96);
+  transition: transform .8s cubic-bezier(.25,1,.5,1), filter .8s ease;
+}
+
+.person-card:hover img,
+.person-card:focus-visible img {
+  transform: scale(1.03);
+  filter: saturate(.92) contrast(.98);
+}
+
+.person-info {
+  min-height: 92px;
+  grid-template-columns: 52px 1fr auto;
+  padding: 14px 0 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.person-number {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.person-name {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: .08em;
+}
+
+.person-link b {
+  color: var(--ink);
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+}
+
+.page-shell {
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px;
+  background: var(--paper);
+}
+
+.gift-stage {
+  width: min(1060px, 100%);
+  min-height: 720px;
+  border: 0;
+  border-radius: 0;
+  padding: 70px 64px;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  overflow: visible;
+}
+
+.intro {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.intro h1 {
+  font-size: clamp(68px, 9vw, 110px);
+  font-weight: 500;
+  font-style: italic;
+  line-height: .9;
+  letter-spacing: -.03em;
+}
+
+.intro p:last-child {
+  color: var(--warm-gray);
+  font-size: 13px;
+  letter-spacing: .08em;
+}
+
+.lock-panel,
+.person-lock {
+  width: min(460px, 100%);
+  margin: 64px auto 0;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: rgba(255,255,255,.35);
+  box-shadow: none;
+}
+
+.lock-icon {
+  border-radius: 50%;
+  background: #b1a393;
+  box-shadow: none;
+}
+
+.countdown div {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper);
+}
+
+.countdown strong {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--ink);
+}
+
+.wish-grid {
+  max-width: 700px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+
+.wish-button {
+  border-radius: 2px;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: transform .35s ease, background .35s ease;
+}
+
+.wish-button span {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--accent);
+}
+
+.wish-button:hover {
+  transform: translateY(-4px);
+  box-shadow: inset 0 0 0 1px #bbb2a7;
+}
+
+.wish-button.lit {
+  color: #fff;
+  background: #6f665e;
+  box-shadow: none;
+  animation: pop .38s ease;
+}
+
+.wish-button.lit span { color: #fff; }
+
+.final-card,
+.gift-chooser {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  inset: auto;
+  max-height: calc(100vh - 48px);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper);
+  box-shadow: 0 24px 80px rgba(67,61,54,.14);
+  transform: translate(-50%, -48%) scale(.96);
+}
+
+.final-card.show,
+.gift-chooser.show {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.birthday-photo,
+.birthday-video {
+  border: 0;
+  border-radius: 2px;
+  box-shadow: none;
+  object-fit: cover;
+}
+
+.close-card,
+.confirm-gift,
+.back-to-card {
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 500;
+  letter-spacing: .08em;
+}
+
+.close-card:hover,
+.confirm-gift:not(:disabled):hover,
+.back-to-card:hover {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.gift-option {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: rgba(255,255,255,.55);
+}
+
+.gift-option:hover,
+.gift-option.selected {
+  border-color: var(--ink);
+  background: #fff;
+  box-shadow: none;
+  transform: none;
+}
+
+.gift-number {
+  border-radius: 50%;
+  background: #b1a393;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.home-back {
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+@media (max-width: 900px) {
+  .home-shell { width: min(760px, calc(100% - 48px)); }
+  .campaign-header { grid-template-columns: 90px 1fr 180px; }
+  .people-grid { column-gap: 18px; row-gap: 64px; }
+  .person-card:nth-child(1) { grid-column: 1 / span 6; }
+  .person-card:nth-child(2) { grid-column: 8 / span 5; }
+  .person-card:nth-child(3) { grid-column: 2 / span 5; }
+  .person-card:nth-child(4) { grid-column: 8 / span 4; }
+  .person-card:nth-child(5) { grid-column: 5 / span 7; }
+}
+
+@media (max-width: 680px) {
+  .home-shell {
+    width: min(520px, calc(100% - 28px));
+    padding: 24px 0 72px;
+  }
+
+  .campaign-header {
+    min-height: 180px;
+    margin-bottom: 42px;
+    grid-template-columns: 52px 1fr;
+    padding: 20px 0 24px;
+  }
+
+  .campaign-mark { font-size: 13px; }
+  .campaign-header h1 { font-size: clamp(54px, 18vw, 82px); }
+  .campaign-kicker { right: 0; }
+
+  .people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 10px;
+    row-gap: 44px;
+  }
+
+  .person-card,
+  .person-card:nth-child(n),
+  .person-card.is-nearest {
+    grid-column: auto !important;
+    width: 100%;
+    margin-top: 0 !important;
+  }
+
+  .person-card:nth-child(3),
+  .person-card:nth-child(5) {
+    margin-top: 46px !important;
+  }
+
+  .person-card img { aspect-ratio: 3 / 4; }
+  .person-info { min-height: 76px; grid-template-columns: 38px 1fr; }
+  .person-name { font-size: 18px; }
+
+  .page-shell { padding: 10px; }
+  .gift-stage { min-height: 620px; padding: 48px 18px 24px; }
+  .intro { padding-top: 18px; }
+  .intro h1 { font-size: clamp(52px, 17vw, 76px); }
+  .wish-grid { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .wish-button { font-size: 8px; }
+  .wish-button span { font-size: 16px; }
+  .lock-panel, .person-lock { padding: 32px 14px; }
+  .countdown { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 5px; }
+  .countdown div { padding: 10px 3px 8px; }
+  .countdown strong { font-size: 26px; }
+
+  .final-card,
+  .gift-chooser {
+    width: calc(100% - 24px);
+    max-height: calc(100vh - 24px);
   }
 }

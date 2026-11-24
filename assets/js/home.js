@@ -24,3 +24,30 @@ if (peopleGrid && people.length) {
   people.forEach((person) => peopleGrid.appendChild(person));
   people[0].classList.add('is-nearest');
 }
+
+const revealItems = document.querySelectorAll('.person-card');
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-ready');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('reveal-ready'));
+}
+
+if (window.matchMedia('(pointer: fine)').matches) {
+  window.addEventListener('scroll', () => {
+    revealItems.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const offset = (rect.top - window.innerHeight * 0.5) * (index % 2 ? -0.018 : 0.012);
+        item.style.setProperty('--parallax-offset', `${offset}px`);
+      }
+    });
+  }, { passive: true });
+}
